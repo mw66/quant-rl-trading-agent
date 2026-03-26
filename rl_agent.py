@@ -40,6 +40,7 @@ from datetime import datetime
 import json
 import pandas as pd
 import gymnasium as gym
+from gymnasium.wrappers import TimeLimit
 import matplotlib.pyplot as plt
 from collections import deque
 
@@ -447,6 +448,8 @@ class RLTradingAgentV2:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         logger.info(f"Using device: {self.device}")
         
+        # 1. Wrap the base env with a step limit
+        self.env = TimeLimit(self.env, max_episode_steps=252)
         # Create vectorized environment with Monitor wrapper
         self.vec_env = DummyVecEnv([lambda: Monitor(self.env)])
         
