@@ -1,0 +1,77 @@
+{
+  "data": {
+    "symbol": "SPY",
+    "start_date": "1993-01-29",
+    "end_date": "2026-02-02",
+    "csv_path": "SPY.csv",
+    "train_ratio": 0.7,
+    "val_ratio": 0.15,
+    "normalization_method": "robust",
+    "data_frequency": "1d"
+  },
+  "environment": {
+    "initial_capital": 100000.0,
+    "transaction_cost": 0.0001,
+    "slippage": 0.0001,
+    "min_position_change": 0.01,
+    "volatility_penalty": 0.005,
+    "drawdown_penalty": 0.01,
+    "max_position_size": 1.0,
+    "lookback_window": 1,
+    "position_sizing": "volatility",
+    "use_discrete_actions": true
+  },
+  "agent": {
+    "algorithm": "PPO",
+    "policy": "MlpPolicy",
+    "learning_rate": 0.0005,
+    "n_steps": 1024,
+    "batch_size": 64,
+    "n_epochs": 5,
+    "gamma": 0.99,
+    "gae_lambda": 0.9,
+    "clip_range": 0.3,
+    "clip_range_vf": null,
+    "ent_coef": 0.05,
+    "vf_coef": 0.25,
+    "max_grad_norm": 1.0,
+    "target_kl": 0.2,
+    "use_custom_network": true,
+    "use_attention": true,
+    "hidden_dims": [
+      256,
+      256,
+      128
+    ],
+    "dropout_rate": 0.1,
+    "total_timesteps": 50000,
+    "eval_freq": 10000,
+    "save_freq": 10000,
+    "n_eval_episodes": 3,
+    "normalize_observations": true,
+    "normalize_rewards": false,
+    "normalize_advantage": true,
+    "use_lr_schedule": true,
+    "lr_schedule_type": "linear",
+    "lr_warmup_steps": 5000,
+    "use_ensemble": false,
+    "n_ensemble_models": 3
+  },
+  "backtesting": {
+    "use_walk_forward": false,
+    "walk_forward_periods": 2,
+    "benchmark_strategies": [
+      "buy_hold",
+      "sma_crossover",
+      "momentum"
+    ]
+  },
+  "optimization": {
+    "optimize_hyperparams": false,
+    "n_trials": 20,
+    "optimization_metric": "sharpe_ratio"
+  },
+  "output_dir": "./output",
+  "log_level": "INFO",
+  "random_seed": 42
+}
