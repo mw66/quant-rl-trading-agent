@@ -44,7 +44,7 @@
       128
     ],
     "dropout_rate": 0.1,
-    "total_timesteps": 50000,
+    "total_timesteps": 500000,
     "eval_freq": 10000,
     "save_freq": 10000,
     "n_eval_episodes": 3,
